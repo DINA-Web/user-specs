@@ -19,11 +19,6 @@ paths:
       description: By passing in query string, user can get available users authorised
       parameters:
         - in: query
-          name: filter[rsql]
-          description: pass an optional search string for looking up the users
-          schema:
-            type: string
-        - in: query
           name: sort
           description: optional sort order string, such as descending, denoted by "-"
           schema:
@@ -181,10 +176,10 @@ components:
               description: display name of the user
             firstName:
               type: string
-              description: display name of the user              
+              description: user first name             
             lastName:
               type: string
-              description: display name of the user                            
+              description: user last name                           
             emailAddress:
               type: string              
               description: user email            
@@ -196,9 +191,11 @@ components:
               type: array
               items: 
                 type: string
-              example: [cnc, dao]                         
+              example: [cnc, dao]                    
+              description: user groups                      
             roles:
               type: array
               items: 
                 type: string
               example: [staff, collection-manager]
+              description: user roles, e.g, as in subgroups  
