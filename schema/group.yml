@@ -1,0 +1,188 @@
+openapi: 3.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
+info:
+  description: Group schema
+  version: "1.0.0"
+  title: Group schema
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /v1/group:
+    get:
+      summary: Get groups
+      operationId: getGroups
+      description: By passing in query string, group can get available groups authorised
+      parameters:
+        - in: query
+          name: sort
+          description: optional sort order string, such as descending, denoted by "-"
+          schema:
+            type: string
+        - in: query
+          name: page[offset]
+          description: number of records to skip when paging
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: page[limit]
+          description: maximum number of records to return when paging
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: groups satifying the query restrictions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Group'                
+        '404':
+          description: group not found
+    post:
+      summary: Add group
+      operationId: addGroup
+      description: Add a group
+      responses:
+        '201':
+          description: group created
+        '422':
+          description: Data integrity violation          
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/NewGroup'
+        description: Group to add
+  /v1/group/{Id}:
+    get:
+      summary: Find group by ID
+      description: Return a single group
+      operationId: getGroupById
+      parameters:
+        - name: Id
+          in: path
+          description: ID of group to return
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/vnd.api+json:
+              schema:          
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Not a valid uuid                
+        '404':
+          description: Group not found          
+    patch:
+      summary: Update group
+      operationId: updateGroup
+      description: Update a group
+      parameters:
+        - name: Id
+          in: path
+          description: group id to patch
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: group updated
+        '400':
+          description: invalid input, object invalid
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        description: group to add
+    delete:
+      summary: Delete group
+      operationId: deleteGroup
+      description: Delete a group
+      parameters:
+        - name: Id
+          in: path
+          description: group id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: group marked as deleted
+        '400':
+          description: Not a valid uuid          
+        '404':
+          description: group not found       
+components:
+  schemas:
+    Group:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              description: Identifier of the object as UUID
+          allOf:
+            - $ref: '#/components/schemas/CommonGroup'
+
+    NewGroup:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/CommonGroup'
+
+    CommonGroup:
+      type: object
+      required:
+        - type
+        - attributes       
+      properties:            
+        type:
+          enum: [group]      
+          description: The type of data being returned.
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: display name of the group
+            path:
+              type: string
+              description: path of the group             
+            labels:
+              type: object
+              description: map from [ISO language code -> value]
+              example:
+                en: English
+                fr: French
+              additionalProperties:
+                type: string                          
+         
