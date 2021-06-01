@@ -142,7 +142,7 @@ components:
             - id
           properties:
             id:
-              type: integer
+              type: string
               description: Identifier of the object as an integer
           allOf:
             - $ref: '#/components/schemas/CommonUserPreference'
