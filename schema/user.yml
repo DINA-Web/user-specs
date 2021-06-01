@@ -187,15 +187,13 @@ components:
               type: string
               format: uuid
               description: associated agent's uuid   
-            groups:
-              type: array
-              items: 
-                type: string
-              example: [cnc, dao]                    
-              description: user groups                      
-            roles:
-              type: array
-              items: 
-                type: string
-              example: [staff, collection-manager]
-              description: user roles, e.g, as in subgroups  
+            rolesPerGroup:
+              type: object
+              description: user groups
+              additionalProperties:
+                type: array
+                example: [staff, collection-manager]                    
+                description: user roles, e.g, as in subgroups      
+                items:
+                  type: string
+
