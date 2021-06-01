@@ -174,13 +174,7 @@ components:
             userId:
               type: string
               format: uuid
-              description: associated user's uuid   
-            groups:
-              type: array
-              items: 
-                type: string
-              example: [cnc, dao]                    
-              description: user preference groups                      
+              description: associated user's uuid                   
             uiPreference:
               type: object
               additionalProperties:
