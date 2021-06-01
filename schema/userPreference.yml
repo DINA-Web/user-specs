@@ -164,7 +164,7 @@ components:
         - attributes       
       properties:            
         type:
-          enum: [user preference]      
+          enum: [user-preference]      
           description: The type of data being returned.
         attributes:
           type: object
