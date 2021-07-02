@@ -177,5 +177,10 @@ components:
               type: object
               additionalProperties:
                 type: string
+            createdOn:              
+              type: string
+              format: date-time                            
+              readOnly: true
+              description: "date and time when the record was created in ISO format"
 
 
