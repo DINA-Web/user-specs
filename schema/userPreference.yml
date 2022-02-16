@@ -172,15 +172,16 @@ components:
             userId:
               type: string
               format: uuid
-              description: associated user's uuid                   
+              description: associated user's uuid
             uiPreference:
               type: object
               additionalProperties:
                 type: string
+            savedSearches:
+              type: object
+              description: Saved searches where the search name is the key
             createdOn:              
               type: string
               format: date-time                            
               readOnly: true
               description: "date and time when the record was created in ISO format"
-
-
