@@ -179,13 +179,9 @@ components:
                 type: string
             savedSearches:
               type: object
-              additionalProperties:
-                type: string
               description: Saved searches where the search name is the key
             createdOn:              
               type: string
               format: date-time                            
               readOnly: true
               description: "date and time when the record was created in ISO format"
-
-
