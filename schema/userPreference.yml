@@ -180,6 +180,9 @@ components:
             savedSearches:
               type: object
               description: Saved searches where the search name is the key
+            savedExportColumnSelection:
+              type: object
+              description: List of Saved export column selection.
             createdOn:              
               type: string
               format: date-time                            
