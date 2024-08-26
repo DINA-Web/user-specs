@@ -178,7 +178,7 @@ components:
               additionalProperties:
                 type: string
             savedSearches:
-              type: object
+              type: array
               description: Saved searches where the search name is the key
             savedExportColumnSelection:
               type: object
