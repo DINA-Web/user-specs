@@ -178,10 +178,10 @@ components:
               additionalProperties:
                 type: string
             savedSearches:
-              type: array
+              type: object
               description: Saved searches where the search name is the key
             savedExportColumnSelection:
-              type: object
+              type: array
               description: List of Saved export column selection.
             createdOn:              
               type: string
