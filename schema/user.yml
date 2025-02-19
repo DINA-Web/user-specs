@@ -192,8 +192,15 @@ components:
               description: user groups
               additionalProperties:
                 type: array
-                example: [staff, collection-manager]                    
+                example: [user, super-user]                    
                 description: user roles, e.g, as in subgroups      
                 items:
                   type: string
+            adminRoles:
+              nullable: true
+              description: admin, non group-based, roles
+              type: array
+              items:
+                type: string
+              example: ["DINA_ADMIN"]
 
